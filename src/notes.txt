@@ -1,0 +1,17 @@
+Bootstrap Installation:
+- npm install bootstrap 
+  - import bootstrap into index.js 
+  - import 'bootstrap/dist/css/bootstrap.min.css';
+- npm install --save jquery popper.js
+
+
+
+* Writting the DogList Component
+- import { BrowserRouter } from 'react-router-dom'
+- Wrap BrowserRouter around the <App /> component 
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>,
+        document.getElementById('root')
+- in App.js, import {Switch, Route } from 'react-router-dom'
+- change to class component
