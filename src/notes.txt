@@ -15,3 +15,9 @@ Bootstrap Installation:
         document.getElementById('root')
 - in App.js, import {Switch, Route } from 'react-router-dom'
 - change to class component
+
+
+* DogDetails:
+- will render the dog selected along with their information
+- will be in a bootstrap card
+- 

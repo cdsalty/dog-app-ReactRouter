@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DogList from './DogList';
-import { Route } from 'react-router-dom';
+import DogDetails from './DogDetails';
+import { Route, Switch } from 'react-router-dom';
 import whiskey from './images/whiskey.jpg';
 import hazel from './images/hazel.jpg';
 import tubby from './images/tubby.jpg';
@@ -14,39 +15,61 @@ class App extends Component {
   static defaultProps = {
     dogs: [
       {
-        name: 'Whiskey like Daisy',
-        age: 5,
+        name: 'Daisy',
+        age: 2,
         src: whiskey,
         facts: [
-          'Whiskey loves eating popcorn.',
-          'Whiskey is a terrible guard dog.',
-          'Whiskey wants to cuddle with you!'
+          'Daisy is our newest love.',
+          'Daisy is a terrible guard dog.',
+          'Daisy wants to cuddle with you!',
+          'Daisy just wanted a home and now she has that plus love'
         ]
       },
       {
-        name: 'Hazel',
-        age: 3,
+        name: 'Addie',
+        age: 6,
         src: hazel,
         facts: [
-          'Hazel has soooo much energy!',
-          'Hazel is highly intelligent.',
-          'Hazel loves people more than dogs.'
+          'Addie had soooo much energy!',
+          'Addie wanted love and her big sis, Maci.',
+          'Addie loved us more than anything but she would have still gone home with a stranger any day',
+          'Addie loved eating food slightly more than Maci did'
         ]
       },
       {
-        name: 'Tubby',
-        age: 4,
+        name: 'Maci',
+        age: 7,
         src: tubby,
         facts: [
-          'Tubby is not the brightest dog',
-          'Tubby does not like walks or exercise.',
-          'Tubby loves eating food.'
+          'Maci was the smartest dog',
+          'Maci did not like walks or exercise.',
+          'Maci preferred to watch over the situations',
+          'Maci loved eating food.'
         ]
       }
     ]
   };
   render() {
-    return <Route exact path="/dogs" render={() => <DogList dogs={this.props.dogs} />} />;
+    // Here, I want to recieve whatever is entered when the user clicks on a specific dog.
+    // all the pups information should carry over and display here
+    const getDog = (props) => {
+      let name = props.match.params.name; // assigning what the dom list as name to "name"
+      // check if this name matches any of the dog names
+      let currentDog = this.props.dogs.find(
+        (doggy) => doggy.name.toLowerCase() === name.toLowerCase()
+      );
+      // Now I can return the DogDetail component along with all the props I passed in, ...props
+      return <DogDetails {...props} dog={currentDog} />;
+      // next, make sure to call, getDog within the route
+    };
+    return (
+      <Switch>
+        <Route exact path="/dogs" render={() => <DogList dogs={this.props.dogs} />} />
+        {/* <Route exact path="/dogs/:name" render={() => <DogDetails />} /> */}
+        <Route exact path="/dogs/:name" render={getDog} />
+        {/* By doing, render ={getDog}, react automatically passes in the props */}
+      </Switch>
+    );
   }
 }
 
