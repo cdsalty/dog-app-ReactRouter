@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import DogList from './DogList';
 import DogDetails from './DogDetails';
+// import Navbar from './Navbar';
 import { Route, Switch } from 'react-router-dom';
-import whiskey from './images/whiskey.jpg';
+import daisy from './images/daisy.jpg';
 import hazel from './images/hazel.jpg';
 import tubby from './images/tubby.jpg';
 
@@ -17,7 +18,7 @@ class App extends Component {
       {
         name: 'Daisy',
         age: 2,
-        src: whiskey,
+        src: daisy,
         facts: [
           'Daisy is our newest love.',
           'Daisy is a terrible guard dog.',
@@ -50,27 +51,47 @@ class App extends Component {
     ]
   };
   render() {
-    // Here, I want to recieve whatever is entered when the user clicks on a specific dog.
-    // all the pups information should carry over and display here
     const getDog = (props) => {
-      let name = props.match.params.name; // assigning what the dom list as name to "name"
-      // check if this name matches any of the dog names
+      let name = props.match.params.name; // pulled from dom, assigning to name and use to check for matching dog
       let currentDog = this.props.dogs.find(
         (doggy) => doggy.name.toLowerCase() === name.toLowerCase()
       );
-      // Now I can return the DogDetail component along with all the props I passed in, ...props
+      //  returning the DogDetail component along with all the props I passed in, ...props
       return <DogDetails {...props} dog={currentDog} />;
-      // next, make sure to call, getDog within the route
     };
     return (
-      <Switch>
-        <Route exact path="/dogs" render={() => <DogList dogs={this.props.dogs} />} />
-        {/* <Route exact path="/dogs/:name" render={() => <DogDetails />} /> */}
-        <Route exact path="/dogs/:name" render={getDog} />
-        {/* By doing, render ={getDog}, react automatically passes in the props */}
-      </Switch>
+      <div>
+        {/* <Navbar /> */}
+        <Switch>
+          <Route exact path="/dogs" render={() => <DogList dogs={this.props.dogs} />} />
+          <Route exact path="/dogs/:name" render={getDog} />
+        </Switch>
+      </div>
     );
   }
 }
 
 export default App;
+
+/*
+
+render() {
+  // Here, I want to recieve whatever is entered when the user clicks on a specific dog.
+  // all the pups information should carry over and display here
+  const getDog = (props) => {
+    let name = props.match.params.name; // assigning what the dom list as name to "name"
+    // check if this name matches any of the dog names
+    let currentDog = this.props.dogs.find(
+      (doggy) => doggy.name.toLowerCase() === name.toLowerCase()
+    );
+    // Now I can return the DogDetail component along with all the props I passed in, ...props
+    return <DogDetails {...props} dog={currentDog} />;
+    // next, make sure to call, getDog within the route
+  };
+  return (
+    <Switch>
+      <Route exact path="/dogs" render={() => <DogList dogs={this.props.dogs} />} />
+       <Route exact path="/dogs/:name" render={() => <DogDetails />} /> */
+//Route exact path="/dogs/:name" render={ getDog } />
+/* By doing, render ={getDog}, react automatically passes in the props */
+// </Switch>

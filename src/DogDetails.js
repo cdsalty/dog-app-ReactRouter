@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'; // so we can use the go-back tab
-// import './DogDetails.css';
+import './DogDetails.css';
 
 class DogDetails extends Component {
   render() {

@@ -20,4 +20,9 @@ Bootstrap Installation:
 * DogDetails:
 - will render the dog selected along with their information
 - will be in a bootstrap card
-- 
+
+
+NAVBAR.js
+- "navbar-expand-lg" used expand the navbar on large and higher screens otherwise, display hamburger menu
+- "navbar-dark" is for the text and will set it to be light on a dark background
+- "bg-dark" is for the background
