@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './DogList.css';
 
 class DogList extends Component {
@@ -6,15 +7,15 @@ class DogList extends Component {
     return (
       <div className="DogList">
         <h2 className="display-2 text-center">Dog List</h2>
-        <div className="container">
-          <div className="row">
-            {this.props.dogs.map((dog) => (
-              <div className="Dog col-md-6 col-lg-4 text-center">
-                <img src={dog.src} alt={dog.name} />
-                <h4>{dog.name}</h4>
-              </div>
-            ))}
-          </div>
+        <div className="row">
+          {this.props.dogs.map((dog) => (
+            <div className="Dog col-md-6 col-lg-4 text-center">
+              <img src={dog.src} alt={dog.name} />
+              <h4>
+                <Link to={`/dogs/${dog.name}`}>{dog.name}</Link>
+              </h4>
+            </div>
+          ))}
         </div>
       </div>
     );
